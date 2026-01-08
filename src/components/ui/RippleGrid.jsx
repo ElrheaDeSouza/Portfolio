@@ -4,7 +4,7 @@ import './RippleGrid.css';
 
 const RippleGrid = ({
   enableRainbow = false,
-  gridColor = '#ffffff',
+  gridColor = '#499ec8ff',
   rippleIntensity = 0.05,
   gridSize = 10.0,
   gridThickness = 15.0,
@@ -121,7 +121,7 @@ void main() {
         color += glowIntensity * exp(-gridThickness * 0.5 * smoothB.y);
     }
 
-    float ddd = exp(-2.0 * clamp(pow(dist, fadeDistance), 0.0, 1.0));
+    float ddd = exp(-0.5 * clamp(pow(dist, fadeDistance), 0.0, 1.0));
     
     vec2 vignetteCoords = vUv - 0.5;
     float vignetteDistance = length(vignetteCoords);

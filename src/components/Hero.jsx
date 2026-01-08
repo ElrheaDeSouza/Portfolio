@@ -3,7 +3,7 @@ import RippleGrid from "./ui/RippleGrid"
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-black pt-[0.5in]">
+    <section className="relative bg-black pt-[0.5in]">
 
       {/* Grid Background (ONLY HERE) */}
       <RippleGrid
@@ -17,7 +17,7 @@ export default function Hero() {
         mouseInteractionRadius={1.2}
         opacity={0.4} 
         glowIntensity={0.2}
-        className="absolute inset-0 -z-10"
+        className="fixed inset-0 -z-10"
       />
 
       {/* Hero Content */}
@@ -33,12 +33,17 @@ export default function Hero() {
           {/* Heading */}
           <h1 className="mt-6 text-5xl md:text-6xl font-bold leading-tight">
             <span className="block text-gray-200">
-              Data Scientist &
-            </span>
-            <span className="block text-blue-500/80">
-              ML Engineer
+              Elrhea De Souza
             </span>
           </h1>
+          <h2 className="mt-6 text-5xl md:text-6xl font-bold leading-tight">
+            <span className="block text-blue-500/80">
+              Data Scientist &
+            </span>
+            <span className="block text-gray-200">
+              ML Engineer
+            </span>
+          </h2>
 
           {/* Description */}
           <p className="mt-6 text-lg md:text-xl text-gray-400">

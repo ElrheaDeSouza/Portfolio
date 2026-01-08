@@ -13,14 +13,14 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="mailto:your@email.com"
+              href="elrheadesouza@gmail.com"
               className="hover:text-blue-700 transition"
             >
-              your@email.com
+              gmail.com
             </a>
             <span className="hidden sm:block">•</span>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/ElrheaDeSouza"
               target="_blank"
               rel="noreferrer"
               className="hover:text-blue-700 transition"
@@ -29,7 +29,7 @@ const Footer = () => {
             </a>
             <span className="hidden sm:block">•</span>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/elrhea-desouza-a07402325/"
               target="_blank"
               rel="noreferrer"
               className="hover:text-blue-700 transition"
