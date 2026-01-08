@@ -13,10 +13,10 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="elrheadesouza@gmail.com"
+              href="mailto:elrheadesouza@gmail.com"
               className="hover:text-blue-700 transition"
             >
-              gmail.com
+              Gmail
             </a>
             <span className="hidden sm:block">•</span>
             <a

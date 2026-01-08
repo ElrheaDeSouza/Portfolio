@@ -8,14 +8,14 @@ export default function Hero() {
       {/* Grid Background (ONLY HERE) */}
       <RippleGrid
         enableRainbow={false}
-        gridColor="#1d4ed8" 
+        gridColor="#2a52be" 
         rippleIntensity={0.02} 
         gridSize={10}
         gridThickness={5} 
         fadeDistance={2.5}
         mouseInteraction={true}
         mouseInteractionRadius={1.2}
-        opacity={0.4} 
+        opacity={0.2} 
         glowIntensity={0.2}
         className="fixed inset-0 -z-10"
       />
