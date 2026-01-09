@@ -1,12 +1,14 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const navigation = [
-  { name: 'Home', href: '/', current: false },
-  { name: 'Projects', href: '/projects', current: false },
-  { name: 'Skills', href: '/skills', current: false },
+const initialNavigation = [
+  { name: 'Home', href: '#home', current: true },
+  { name: 'About', href: '#about', current: false },
+  { name: 'Projects', href: '#projects', current: false },
+  { name: 'Skills', href: '#skills', current: false },
+  { name: 'Experience', href: '#experience', current: false },
   { name: 'Contact', href: '/contact', current: false },
 ]
 
@@ -16,12 +18,45 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Check for saved theme preference, or use system preference
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       return true;
     }
     return false;
   });
+
+  const [navigation, setNavigation] = useState(initialNavigation);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = initialNavigation.map(item => item.href.startsWith('#') ? document.getElementById(item.href.substring(1)) : null).filter(Boolean);
+      const scrollPosition = window.scrollY + 100; // Add offset for better accuracy
+
+      let currentSection = '';
+      sections.forEach(section => {
+        if (section.offsetTop <= scrollPosition && section.offsetTop + section.offsetHeight > scrollPosition) {
+          currentSection = `#${section.id}`;
+        }
+      });
+      
+      // If no section is in view (e.g., at the very top or bottom), default to home or the last section
+      if (currentSection === '') {
+        if (window.scrollY < sections[0]?.offsetTop) {
+          currentSection = '#home';
+        }
+      }
+
+      setNavigation(
+        initialNavigation.map(item =>
+          item.href === currentSection
+            ? { ...item, current: true }
+            : { ...item, current: false }
+        )
+      );
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -36,10 +71,11 @@ export default function Navbar() {
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
+
   return (
     <Disclosure
       as="nav"
-      className="relative bg-gray-900/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
+      className="fixed top-0 left-0 right-0 z-50 bg-black after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -57,18 +93,31 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <NavLink
-                    key={item.name}
-                    to={item.href}
-                    className={({ isActive }) =>
-                      classNames(
-                        isActive ? 'text-blue-700' : 'text-white hover:text-blue-700',
-                        'rounded-md px-3 py-2 text-sm font-medium',
-                      )
-                    }
-                  >
-                    {item.name}
-                  </NavLink>
+                   item.href.startsWith('#') ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className={classNames(
+                        item.current ? 'text-blue-500' : 'text-white hover:text-blue-700',
+                        'rounded-md px-3 py-2 text-sm font-medium'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className={classNames(
+                        item.current ? 'text-blue-500' : 'text-white hover:text-blue-700',
+                        'rounded-md px-3 py-2 text-sm font-medium'
+                      )}
+                      aria-current={item.current ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  )
                 ))}
               </div>
             </div>
@@ -121,14 +170,14 @@ export default function Navbar() {
           {navigation.map((item) => (
             <DisclosureButton
               key={item.name}
-              as={NavLink}
-              to={item.href}
-              className={({ isActive }) =>
-                classNames(
-                  isActive ? 'text-blue-700' : 'text-white hover:text-blue-700',
-                  'block rounded-md px-3 py-2 text-base font-medium',
-                )
-              }
+              as={item.href.startsWith('#') ? 'a' : Link}
+              to={item.href.startsWith('#') ? undefined : item.href}
+              href={item.href.startsWith('#') ? item.href : undefined}
+              className={classNames(
+                item.current ? 'text-blue-500' : 'text-white hover:text-blue-700',
+                'block rounded-md px-3 py-2 text-base font-medium'
+              )}
+              aria-current={item.current ? 'page' : undefined}
             >
               {item.name}
             </DisclosureButton>

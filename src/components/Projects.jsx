@@ -1,7 +1,8 @@
 import { Github, ExternalLink } from "lucide-react"
+import { motion } from "framer-motion"
 
 const projects = [
- {
+  {
     repo: "house-price-predictor-flask-colab-n8n",
     title: "House Price Predictor",
     tag: "Machine Learning",
@@ -34,7 +35,7 @@ const projects = [
     color: "from-cyan-400 to-blue-500",
   },
   {
-    repo: " CalifoniaHousePricePrediction",
+    repo: "CalifoniaHousePricePrediction",
     title: "Recommendation System",
     tag: "AI Systems",
     description:
@@ -50,7 +51,7 @@ const projects = [
     color: "from-purple-500 to-fuchsia-500",
   },
   {
-    repo: " Emotion-Detection",
+    repo: "Emotion-Detection",
     title: "Computer Vision Pipeline",
     tag: "Computer Vision",
     description:
@@ -69,7 +70,7 @@ const projects = [
 
 const Project = () => {
   return (
-    <section className="bg-black px-6 py-24">
+    <section id="projects" className="bg-black px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <h2 className="mb-12 text-4xl font-bold text-white">
           Selected Projects
@@ -77,8 +78,12 @@ const Project = () => {
 
         <div className="grid gap-8 md:grid-cols-2">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-black p-6 backdrop-blur"
             >
               {/* Accent Bar */}
@@ -140,7 +145,7 @@ const Project = () => {
                   <ExternalLink size={16} /> Demo
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import RippleGrid from "./ui/RippleGrid";
 import Icons from './Icons';
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="relative bg-black h-screen overflow-hidden">
+    <section id="home" className="relative bg-black h-screen overflow-hidden">
 
       {/* Grid Background (ONLY HERE) */}
       <RippleGrid
@@ -54,9 +54,9 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link to="/projects" className="rounded-xl bg-blue-500 px-6 py-3 font-medium text-black hover:bg-blue-400 transition">
+            <a href="#projects" className="rounded-xl bg-blue-500 px-6 py-3 font-medium text-black hover:bg-blue-400 transition">
               View Projects →
-            </Link>
+            </a>
             <Link to="/contact" className="rounded-xl border border-blue-500 px-6 py-3 font-medium hover:text-blue-500 hover:scale-110 transition-transform">
               Get in Touch
             </Link>

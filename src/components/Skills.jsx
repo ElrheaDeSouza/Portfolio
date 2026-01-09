@@ -1,7 +1,27 @@
+import { motion } from "framer-motion";
 import SkillCard from "./SkillCard";
 import Certifications from "./Certifications";
 import Workflow from "./Workflow";
 import { skillsData } from "../data/skillsData";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const Skills = () => {
   return (
@@ -10,37 +30,70 @@ const Skills = () => {
       className="bg-black px-6 py-24 text-white"
     >
       <div className="mx-auto max-w-7xl">
-        {/* Heading */}
-        <h2 className="text-4xl font-bold tracking-tight">
-          Skills & Expertise
-        </h2>
 
-        <p className="mt-4 max-w-3xl text-gray-400 leading-relaxed">
+        {/* Heading */}
+        <motion.h2
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-4xl font-bold tracking-tight"
+        >
+          Skills & Expertise
+        </motion.h2>
+
+        <motion.p
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-4 max-w-3xl text-gray-400 leading-relaxed"
+        >
           A comprehensive overview of my technical skills, tools, and frameworks.
           Continuously learning and adapting to the latest technologies in data
           science and AI.
-        </p>
+        </motion.p>
 
         {/* Skills Grid */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {skillsData.map((skill, index) => (
-            <SkillCard
-              key={index}
-              title={skill.title}
-              items={skill.items}
-            />
+            <motion.div key={index} variants={itemVariants}>
+              <SkillCard
+                title={skill.title}
+                items={skill.items}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Certifications */}
-        <div className="mt-24">
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-24"
+        >
           <Certifications />
-        </div>
+        </motion.div>
 
         {/* Workflow */}
-        <div className="mt-24">
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-24"
+        >
           <Workflow />
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );
