@@ -4,10 +4,10 @@ import { motion } from "framer-motion"
 const projects = [
   {
     repo: "house-price-predictor-flask-colab-n8n",
-    title: "House Price Predictor",
+    title: "FlowSense-ML Powered Workflow Automation",
     tag: "Machine Learning",
     description:
-      "End-to-end ML pipeline to predict customer churn with 94% accuracy.",
+      "An end-to-end ML application that predicts house prices using a trained model, exposes predictions through a Flask API, and uses n8n automation to email results instantly to users.",
     details:
       "Feature engineering, hyperparameter tuning, and Flask API deployment.",
     stats: [
@@ -15,23 +15,23 @@ const projects = [
       { value: "91%", label: "Precision" },
       { value: "100K+", label: "Records" },
     ],
-    tech: ["Python", "Scikit-learn", "XGBoost", "Flask", "Docker"],
+    tech: ["Python", "Flask", "n8n", "ML", "Webhooks"],
     color: "from-blue-500 to-cyan-400",
   },
   {
     repo: "faiss-booksearch-vectorstore",
-    title: "A book recommendation system",
-    tag: "Deep Learning",
+    title: "FAISS BookSearch VectorStore",
+    tag: "Machine Learning",
     description:
-      "A book recommendation system using FAISS and embedding models via Ollama. Performs vector-based similarity.",
+      "A book recommendation system that uses embedding models via Ollama and FAISS to perform fast vector-based similarity search and return relevant book recommendations based on user queries.",
     details:
-      "BERT fine-tuning, Kafka pipelines, AWS deployment.",
+      "FAISS fine-tuning, Kafka pipelines, AWS deployment.",
     stats: [
       { value: "92%", label: "F1 Score" },
       { value: "10K/min", label: "Speed" },
       { value: "5", label: "Languages" },
     ],
-    tech: ["PyTorch", "BERT", "Kafka", "AWS"],
+    tech: ["Python", "FAISS", "Ollama", "Machine Learning", "Vector Databases"],
     color: "from-cyan-400 to-blue-500",
   },
   {
@@ -138,9 +138,14 @@ const Project = () => {
 
               {/* Buttons */}
               <div className="mt-8 flex gap-4">
-                <button className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 py-2 text-sm hover:bg-white/10 transition">
+                <a
+                  href={`https://github.com/ElrheaDeSouza/${project.repo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 py-2 text-sm hover:bg-white/10 transition"
+                >
                   <Github size={16} /> Code
-                </button>
+                </a>
                 <button className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 py-2 text-sm hover:bg-white/10 transition">
                   <ExternalLink size={16} /> Demo
                 </button>
