@@ -36,7 +36,7 @@ const Skills = () => {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="text-4xl font-bold tracking-tight"
         >
           Skills & Expertise
@@ -46,7 +46,7 @@ const Skills = () => {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="mt-4 max-w-3xl text-gray-400 leading-relaxed"
         >
           A comprehensive overview of my technical skills, tools, and frameworks.
@@ -77,7 +77,7 @@ const Skills = () => {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="mt-24"
         >
           <Certifications />
@@ -88,7 +88,7 @@ const Skills = () => {
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           className="mt-24"
         >
           <Workflow />

@@ -82,7 +82,7 @@ const Project = () => {
               key={index}
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-black p-6 backdrop-blur"
             >
