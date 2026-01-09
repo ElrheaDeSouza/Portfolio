@@ -14,7 +14,7 @@ function App() {
     return (
       <div className="bg-black text-white min-h-screen flex flex-col">
         <Navbar />
-        <main className={`flex-grow ${isHomePage ? 'overflow-hidden' : 'overflow-y-auto'}`}>
+        <main className={`relative flex-grow ${isHomePage ? 'overflow-hidden' : 'overflow-y-auto'}`}>
           <Outlet />
         </main>
         <Footer />

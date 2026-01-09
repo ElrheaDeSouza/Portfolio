@@ -2,6 +2,13 @@ import { useRef, useEffect } from 'react';
 import { Renderer, Program, Triangle, Mesh } from 'ogl';
 import './RippleGrid.css';
 
+const hexToRgb = hex => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255]
+    : [1, 1, 1];
+};
+
 const RippleGrid = ({
   enableRainbow = false,
   gridColor = '#499ec8ff',
@@ -14,7 +21,8 @@ const RippleGrid = ({
   opacity = 1.0,
   gridRotation = 0,
   mouseInteraction = true,
-  mouseInteractionRadius = 1
+  mouseInteractionRadius = 1,
+  rippleCenterY = 0
 }) => {
   const containerRef = useRef(null);
   const mousePositionRef = useRef({ x: 0.5, y: 0.5 });
@@ -24,13 +32,6 @@ const RippleGrid = ({
 
   useEffect(() => {
     if (!containerRef.current) return;
-
-    const hexToRgb = hex => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result
-        ? [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255]
-        : [1, 1, 1];
-    };
 
     const renderer = new Renderer({
       dpr: Math.min(window.devicePixelRatio, 2),
@@ -68,6 +69,7 @@ uniform bool mouseInteraction;
 uniform vec2 mousePosition;
 uniform float mouseInfluence;
 uniform float mouseInteractionRadius;
+uniform float rippleCenterY;
 varying vec2 vUv;
 
 float pi = 3.141592;
@@ -81,6 +83,7 @@ mat2 rotate(float angle) {
 void main() {
     vec2 uv = vUv * 2.0 - 1.0;
     uv.x *= iResolution.x / iResolution.y;
+    uv.y -= rippleCenterY;
 
     if (gridRotation != 0.0) {
         uv = rotate(gridRotation * pi / 180.0) * uv;
@@ -160,7 +163,8 @@ void main() {
       mouseInteraction: { value: mouseInteraction },
       mousePosition: { value: [0.5, 0.5] },
       mouseInfluence: { value: 0 },
-      mouseInteractionRadius: { value: mouseInteractionRadius }
+      mouseInteractionRadius: { value: mouseInteractionRadius },
+      rippleCenterY: { value: rippleCenterY }
     };
 
     uniformsRef.current = uniforms;
@@ -233,13 +237,6 @@ void main() {
   useEffect(() => {
     if (!uniformsRef.current) return;
 
-    const hexToRgb = hex => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result
-        ? [parseInt(result[1], 16) / 255, parseInt(result[2], 16) / 255, parseInt(result[3], 16) / 255]
-        : [1, 1, 1];
-    };
-
     uniformsRef.current.enableRainbow.value = enableRainbow;
     uniformsRef.current.gridColor.value = hexToRgb(gridColor);
     uniformsRef.current.rippleIntensity.value = rippleIntensity;
@@ -252,6 +249,7 @@ void main() {
     uniformsRef.current.gridRotation.value = gridRotation;
     uniformsRef.current.mouseInteraction.value = mouseInteraction;
     uniformsRef.current.mouseInteractionRadius.value = mouseInteractionRadius;
+    uniformsRef.current.rippleCenterY.value = rippleCenterY;
   }, [
     enableRainbow,
     gridColor,
@@ -264,7 +262,8 @@ void main() {
     opacity,
     gridRotation,
     mouseInteraction,
-    mouseInteractionRadius
+    mouseInteractionRadius,
+    rippleCenterY
   ]);
 
   return <div ref={containerRef} className="ripple-grid-container" />;

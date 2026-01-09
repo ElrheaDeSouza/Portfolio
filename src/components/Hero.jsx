@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import RippleGrid from "./ui/RippleGrid"
+import RippleGrid from "./ui/RippleGrid";
+import Icons from './Icons';
 
 export default function Hero() {
   return (
-    <section className="relative bg-black pt-[0.5in]">
+    <section className="relative bg-black h-screen overflow-hidden">
 
       {/* Grid Background (ONLY HERE) */}
       <RippleGrid
@@ -12,17 +13,16 @@ export default function Hero() {
         rippleIntensity={0.02} 
         gridSize={10}
         gridThickness={5} 
-        fadeDistance={2.5}
-        mouseInteraction={true}
-        mouseInteractionRadius={1.2}
-        opacity={0.2} 
-        glowIntensity={0.2}
-        className="fixed inset-0 -z-10"
+                fadeDistance={3.5}
+                mouseInteraction={true}
+                mouseInteractionRadius={1.2}
+                opacity={0.2}
+                glowIntensity={0.12}        className="fixed inset-0 -z-10"
       />
 
       {/* Hero Content */}
       <div className="relative z-10 flex h-full items-center justify-center px-6 text-center">
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mt-[-4rem]">
 
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm text-blue-400">
@@ -57,12 +57,16 @@ export default function Hero() {
             <Link to="/projects" className="rounded-xl bg-blue-500 px-6 py-3 font-medium text-black hover:bg-blue-400 transition">
               View Projects →
             </Link>
-            <Link to="/contact" className="rounded-xl border border-white/20 px-6 py-3 font-medium hover:bg-white/10 transition">
+            <Link to="/contact" className="rounded-xl border border-blue-500 px-6 py-3 font-medium hover:text-blue-500 hover:scale-110 transition-transform">
               Get in Touch
             </Link>
           </div>
 
         </div>
+      </div>
+       {/* Icons at the bottom */}
+       <div className="absolute bottom-8 left-0 right-0 z-20">
+        <Icons />
       </div>
     </section>
   )
