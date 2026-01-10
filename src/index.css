@@ -97,6 +97,11 @@
   }
 }
 
+.blue-glow {
+  box-shadow: 0 0 30px 10px rgba(59, 130, 246, 0.5);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
 /* ================================
    Ripple Grid Effect (Subtle)
    ================================ */
