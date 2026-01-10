@@ -15,13 +15,13 @@ const About = () => {
           <div>
             <h2 className="text-4xl font-bold mb-4 text-blue-500/80">About Me</h2>
             <p className="text-lg text-gray-400 mb-6">
-              Hello! I'm Elrhea, a passionate Data Scientist and Machine Learning Engineer. I thrive on transforming complex datasets into meaningful and actionable insights. My journey in the world of data has been driven by a relentless curiosity and a desire to solve real-world problems.
+              Hello! I'm Elrhea, a passionate Data Scientist and Machine Learning Engineer who enjoys turning raw data into intelligent, usable systems. I work hands-on with real-world datasets cleaning data, building models, and extracting insights that actually matter.
             </p>
             <p className="text-lg text-gray-400 mb-6">
-              With a strong foundation in statistics, programming, and machine learning, I specialize in developing predictive models and leveraging deep learning techniques to uncover hidden patterns in data. I am always excited to take on new challenges and contribute to innovative projects.
+              With a strong foundation in statistics, programming, and machine learning, I enjoy experimenting, improving models, and understanding why they work not just making them run.
             </p>
             <p className="text-lg text-gray-400">
-              When I'm not working with data, I enjoy exploring new technologies, reading about advancements in AI, and hiking in the great outdoors.
+              When I’m not working with data, I enjoy exploring new technologies, keeping up with advancements in AI, building clean and responsive web interfaces, and unwinding with music especially playing the violin.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a

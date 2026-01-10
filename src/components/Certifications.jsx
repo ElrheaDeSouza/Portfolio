@@ -1,9 +1,26 @@
-const certifications = [
-  "AWS Certified Machine Learning - Specialty",
-  "TensorFlow Developer Certificate",
-  "Deep Learning Specialization - DeepLearning.AI",
-  "Advanced Data Science with IBM",
+const certificationsData = [
+  "AWS APAC Solutions Architecture - Forage",
+  "Deep Learning for Developers - Infosys Springboard",
+  "Introduction to Large Language Models - Google Cloud",
+  "Basics of AWS Managed Services - AWS Training & Certification",
 ];
+
+const certificateFileMap = {
+  "AWS APAC Solutions Architecture - Forage": "AWS.pdf",
+  "Deep Learning for Developers - Infosys Springboard": "Deep Learning for Developers.pdf",
+  "Introduction to Large Language Models - Google Cloud": "Introduction to Large Language Models.pdf",
+  "Basics of AWS Managed Services - AWS Training & Certification": "Basics of AWS Managed Services.pdf",
+};
+
+const generateLink = (name) => {
+  const fileName = certificateFileMap[name];
+  return fileName ? `/Certificates/${fileName}` : "#"; // Fallback to '#' if no mapping found
+};
+
+const certifications = certificationsData.map((name) => ({
+  name,
+  link: generateLink(name),
+}));
 
 const Certifications = () => {
   return (
@@ -20,7 +37,14 @@ const Certifications = () => {
               className="flex items-center gap-3 rounded-xl border border-cyan-400/20 bg-black/40 px-6 py-4"
             >
               <span className="h-2 w-2 rounded-full bg-cyan-400" />
-              <p className="text-gray-200">{cert}</p>
+              <a
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-200 hover:text-cyan-400"
+              >
+                {cert.name}
+              </a>
             </div>
           ))}
         </div>
