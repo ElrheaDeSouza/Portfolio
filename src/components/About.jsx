@@ -25,7 +25,7 @@ const About = () => {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="/Elrhea_De_Souza_Resume.pdf" // Placeholder for resume
+                href="/Resume/ElrhesDesouza_DataScience_Resume-2.pdf" // Updated resume path
                 download
                 className="rounded-xl bg-blue-500 px-6 py-3 font-medium text-black hover:bg-blue-400 transition"
               >
