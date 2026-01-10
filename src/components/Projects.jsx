@@ -73,7 +73,7 @@ const Project = () => {
     <section id="projects" className="bg-black px-6 py-24">
       <div className="mx-auto max-w-7xl">
         <h2 className="mb-12 text-4xl font-bold text-white">
-          Selected Projects
+         Projects
         </h2>
 
         <div className="grid gap-8 md:grid-cols-2">

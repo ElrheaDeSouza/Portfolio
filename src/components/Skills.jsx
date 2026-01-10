@@ -27,7 +27,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="bg-black px-6 py-24 text-white"
+      className="bg-black px-6 py-24 text-blue-500/80"
     >
       <div className="mx-auto max-w-7xl">
 
@@ -37,7 +37,7 @@ const Skills = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: false }}
-          className="text-4xl font-bold tracking-tight"
+          className="text-4xl font-bold tracking-tight "
         >
           Skills & Expertise
         </motion.h2>
